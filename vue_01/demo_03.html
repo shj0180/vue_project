@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="./vue3.js"></script>
+</head>
+<body>
+    <div id="app"></div>
+
+    <script>
+        Vue.createApp({
+            
+            data(){
+                return {
+                    title: '投资系统',
+                    content: '',
+                    isshow: true,
+                }
+            },
+            methods: {
+                getBalancesheet(){
+                    this.content =  'this is Balancesheet',
+                    this.isshow = !this.isshow
+                },
+                getIncome(){
+                    this.content =  'this is Income',
+                    this.isshow = !this.isshow
+                },
+                getCashFlow(){
+                    this.content =  'this is CashFlow',
+                    this.isshow = !this.isshow
+                }
+
+            },
+            template: `
+                <div>
+                    <div> {{title}} </div>
+                    
+                    <button v-on:click='getBalancesheet'> 资产负债表</button>                    
+                    <button v-on:click='getIncome'> 利润表</button>
+                    <button v-on:click='getCashFlow'> 现金流量表</button>
+                    <div v-if='isshow'>{{content}}</div>
+
+                </div>
+            `,
+
+        }).mount("#app")
+    </script>
+</body>
+</html>
