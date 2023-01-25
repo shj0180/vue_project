@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="./vue3.js"> </script>
+</head>
+<body>
+    <div id="app">
+        <h1 >内容： 组件化</h1>
+        <div>
+            <input v-model="input_value"><button v-on:click="add">add</button>
+            <br>
+            <my_title></my_title>
+            <stock 
+                v-for="(item, index) of stock_list"
+                v-bind:item_c = "item"
+                v-bind:index_c = "index"
+            />
+        </div>
+    </div>
+    <script>
+        const app = Vue.createApp({
+            data(){
+                return {
+                    stock_list: [1,2],
+                    input_value: ''
+                }
+            },
+            methods: {
+                add(){
+                    this.stock_list.push(this.input_value)
+                    console.log(this.input_value)
+                    this.input_value = ''
+                    console.log(this.input_value)
+                },
+
+            }
+        })
+
+        app.component('my_title',  {
+            template: `
+            <div>
+                <h1 style='text-align:center'> 
+                    静态组件
+                </h1>
+            </div>
+            `
+        })
+
+        app.component('stock', {
+            props: ['item_c', 'index_c'],
+            template: `
+            <div>动态组件</div>
+            <ul> 
+                <li>{{index_c}} - {{item_c}}</li>
+            </ul>
+            `
+        })
+
+        app.mount('#app')
+    </script>
+</body>
+</html>

@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="./vue3.js"> </script>
+
+</head>
+<body>
+    <div id="app"></div>
+    <script>
+        const app = Vue.createApp({
+            data(){
+                return {
+                    message: 'this is a vue example'   // 数据层 model
+                }
+            },
+            methods: {
+
+            },
+            template: `<h1>{{message}}</h1>`     // 模版层  view
+        })
+        // 数据层与模版层之间的数据引用层 称之为vm层
+        // 设计模式 ： mvvm 
+        const vm1 = app.mount('#app')
+        // console.log(vm1)
+    </script>
+</body>
+</html>

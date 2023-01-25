@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="./vue3.js"> </script>
+
+</head>
+<body>
+    <div> 
+        <ul>
+            <li>生命周期函数</li>
+            <li>三元表达式</li>
+        </ul>
+    </div>
+    <div id="app"></div>
+    <script>
+        Vue.createApp({
+            data(){
+                return {
+                    message: 'this is a vue example',
+                    status: '学习',
+                }
+            },
+            methods:{
+                datahanler(){
+                    this.message = this.message == '学习'? '休息下':'学习'
+                }
+            },
+            beforeCreate() {
+                console.log('beforeCreate')
+            },
+            created() {
+                console.log('created')
+            },
+            beforeMount() {
+                console.log('beforeMount')     // 模版渲染之前
+            },
+            mounted() {
+                console.log('mounted')    // 模版渲染之后
+            },
+            beforeUpdate() {
+                console.log('beforeUpdate')
+            },
+            updated() {     // data数据变化
+                console.log('updated')
+            },
+            beforeUnmount() {
+                console.log('beforeUnmount')
+            },
+            unmounted() {     // vue 应用失效，DOM销毁后
+                console.log('unmounted')
+            },
+
+            template: `<div v-on:click="datahanler">{{message}}</div>`
+        }).mount('#app')
+    </script>
+     
+</body>
+</html>

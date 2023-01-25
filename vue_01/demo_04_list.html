@@ -10,12 +10,33 @@
 <body>
     <div id="app">
         <div>主要内容： list for循环练习、添加、删除 </div>
-        
+        <br>
+        <input v-model="input_value"><button v-on:click="add">add</button>    
+        <!--  model 拼写出错 -->
+        <ul>
+            <li v-for="(item, index) of things_list"> {{index}}, {{item}} </li>
+        </ul>
+
     </div>
     <script>
         Vue.createApp({
-            
+            data(){
+                return {
+                    things_list: [1,2,3],
+                    input_value: '',
+                }
+            },
+            methods: {
+                add(){
+                    this.things_list.push(this.input_value)    // push ,不是put
+                    this.input_value = ''
+                },
+                delete(){
+                    
+                },
 
+            },
+            
 
         }).mount("#app")
     </script>
