@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="./vue3.js"> </script>
+
+</head>
+<body>
+    
+    <div id="app">
+        <h1>计算属性</h1>
+        <p>当计算属性依赖的内容发生变化时，才会重新执行计算。如果用方法执行则只要页面上有刷新，就会执行方法</p>
+        <hr>
+        
+        <div>
+            <button @click="add">change</button>
+            <p @click="add">{{count}}</p>
+            <ul>
+                <li>方法执行：{{getdate()}}</li>
+                <li>计算属性：{{c_value}}</li>
+            </ul>
+        </div>
+    </div>
+
+    <script>
+        Vue.createApp({
+            data(){
+                return {
+                    count: 0
+                }
+            },
+
+            computed: {
+                c_value(){
+                    return Date.now()
+                }
+            },
+
+            methods: {
+                add(){
+                    this.count += 1
+                },
+                getdate(){
+                    return Date.now()
+                }
+            }
+
+        }).mount('#app')
+
+    </script>
+
+</body>
+</html>

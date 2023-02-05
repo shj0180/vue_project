@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <!-- <script src="./vue3.js"></script> -->
+    <script src="https://cdn.bootcdn.net/ajax/libs/vue/3.2.45/vue.global.js"></script>
+</head>
+<body>
+    <div id="app"></div>
+
+    <script>
+        // 局部组件
+        const stock = {
+            template: `<div> this is a 局部组件 </div>`
+        }
+
+
+        // 主组件
+        const app = Vue.createApp({
+            components: {
+                'jbzj': stock
+            },
+
+            data() {
+                return {
+                    zname: 'chaoren',
+                    count: 1,
+                    zpay: ()=> {
+                        return 500
+                    },
+                    zage: 100,
+                }
+            },
+
+            template: `
+                <div>
+                    局部组件 
+                </div>
+                <jbzj />
+                <hr>
+                无效写法
+                <qjzj_01 name='zname'/>  
+                <qjzj_01 name='{{zname}}'/>  
+                此处要从data中获取动态参数需要bind绑定
+                <qjzj_01 :name='zname' :count='count'/>
+                <hr>
+                方法传值
+                <boostore :pay='zpay'/>
+
+                <hr>
+                <check_par :name='zname' :age='zage'/>
+
+            `
+
+        })
+
+        // 全局组件
+        // 如何传值 -- props
+        app.component('qjzj_01', {
+            // 传值
+            props: ['name', 'count'], 
+            template: `
+            <div> this is a 全局组件 -- {{name}} </div>
+            <div> this is a 全局组件 -- {{typeof count}} {{count}} </div>
+            `
+        })
+
+        app.component('boostore', {
+            props: ['pay'],
+            template: `
+                <div> this is a boostore 全局组件 -- {{name}} </div>
+                <div> 请付{{pay()}}</div>
+            `
+        })
+
+        // 传值校验
+        app.component('check_par', {
+            // 校验时使用{},
+            props: {
+                name: String,
+                age: Number,
+                validator: function (age){
+                    // 业务逻辑， return boolen
+                    
+                }
+            },
+            template: `
+                <div> {{name}} age is {{age}}</div>
+            `
+        })
+
+        const vm = app.mount('#app')
+    </script>
+</body>
+</html> 

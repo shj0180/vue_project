@@ -14,7 +14,12 @@
         <input v-model="input_value"><button v-on:click="add">add</button>    
         <!--  model 拼写出错 -->
         <ul>
-            <li v-for="(item, index) of things_list"> {{index}}, {{item}} </li>
+            <!-- :key="index+item"  绑定后只刷新变化的 -->
+            <li 
+                v-for="(item, index) of things_list"
+                :key="index+item"   
+            >
+                 {{index}}, {{item}} </li>
         </ul>
 
     </div>

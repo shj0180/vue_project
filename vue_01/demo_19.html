@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="./vue3.js"> </script>
+
+</head>
+<body>
+    
+    <div id="app">
+        <h1>方法调用</h1>
+        <ul>
+            <li>传入多参数时，envent参数如何传入</li>
+            <li>如何调用多方法</li>
+            <li>v-model修饰符 lazy number trim--处理字符边上的空格</li>
+        </ul>
+        <hr>
+        <div>
+            <p>{{val}}</p>
+            <input type="text" name="" id="" v-model.number="get_num">
+            <br>
+            <button @click="add(get_num, $event)">add</button>
+            <!-- 调用2个方法需要加上（） -->
+            <button @click="a1(), a2()">2个调用</button>
+            <hr>
+        </div>
+    </div>
+    <script>
+        Vue.createApp({
+            data(){
+                return {
+                    val: 0,
+                    get_num: 1
+                }
+            },
+            methods: {
+                add(num, envent){
+                    this.val += num
+                    console.log(event.target)
+                    console.log(event)
+                },
+                a1(){
+                    alert('调用了a1')
+                },
+                a2(){
+                    alert('调用了a2')
+                }
+            },
+
+
+        }).mount('#app')
+
+    </script>
+
+</body>
+</html> 

@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="./vue3.js"> </script>
+
+</head>
+<body>
+    
+    <div id="app">
+        <h1>监听器</h1>
+        <hr>
+        <div>
+            <p>{{val}}</p>
+            <button @click="add">add</button>
+            <!-- <p>watch info :{{watch_info}}</p> -->
+            <p>computed info :{{comp_info}}</p>
+
+            <p>{{comp_info}}</p>
+        </div>
+    </div>
+    <script>
+        Vue.createApp({
+            data(){
+                return {
+                    val: 0,
+                    watch_info: '',
+                    // comp_info: ''
+                }
+            },
+
+            watch:{
+                val(){
+                    this.watch_info = '监听到变化',
+                    console.log('watch count changed')
+                }
+            },
+            computed:{
+                comp_info(){
+                    
+                    console.log('computed count changed')
+                    return this.watch_info
+                }
+            },
+
+            methods: {
+                add(){
+                    this.val += 1
+                }
+            },
+
+        }).mount('#app')
+
+    </script>
+
+</body>
+</html>

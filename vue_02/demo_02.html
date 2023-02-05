@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <!-- <script src="./vue3.js"></script> -->
+    <script src="https://cdn.bootcdn.net/ajax/libs/vue/3.2.45/vue.global.js"></script>
+</head>
+<body>
+    <div id="app"></div>
+
+    <script>
+        const stock = {
+            template: `<div> this is a stock </div>`
+        }
+
+        const app = Vue.createApp({
+            components: {
+                'jbzj': stock
+            },
+            data() {
+                return {
+                    count: 0
+                }
+            },
+
+            template: `
+                <div>
+                    局部组件
+                </div>
+                <jbzj />
+                <hr>
+                <counter :zj_count='count'/>
+
+            `
+        })
+
+        app.component('counter', {
+            props: {
+                zj_count: Number
+            },
+            data() {
+                return {
+                    copy_count: this.zj_count
+                }
+            },
+            template: `
+                
+                <div> count: {{zj_count}} </div>
+                // 这个count值是从主组件中获取，所以在子组件的方法中无法直接去对主组件进行修改。这个叫单向数据库流
+                <br>
+                <button @click='zj_count ++'> ++  这个直接使用主组件 </button>
+                <hr>
+                <div> count: {{copy_count}} </div>
+                <button @click='copy_count ++'> ++  这个重新拷贝了数据</button>
+
+            `
+        })
+
+        const vm = app.mount('#app')
+    </script>
+</body>
+</html> 

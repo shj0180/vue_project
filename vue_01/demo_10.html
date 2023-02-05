@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="./vue3.js"> </script>
+
+</head>
+<body>
+    <div id="app">
+        <h1>
+            <dt :title="title_data" >内容</dt>
+            
+        </h1>
+        <h1>
+            <dt @[event]="handlersome" > 模版动态参数</dt>
+            <button @[event]="handlersome">点击</button>
+        </h1>
+        <h2>
+            <ol>
+                <li>v-on、v-bind 简写</li>
+                <li>模版动态参数</li>
+                <li>阻止默认事件</li>
+            </ol>
+        </h2>
+        <hr>
+        <div>
+            <input v-model="message" @keyup.enter="add"> <button v-on:click="add">add</button>
+            <ol>
+                <li v-for="item of mess_list"> {{item}}</li>
+            </ol>
+        </div>
+        <div>
+
+            <form action="https://www.haitu.tv/vod/play/id/18978/sid/1/nid/8.html">
+                <label>阻止默认事件</label>
+                <button type="submit" @click.prevent="handlerbutton">submit</button>
+            </form> 
+            
+            <hr>
+            <hr>
+            <hr>
+
+                        <!-- Form which will send a GET request to the current URL -->
+            <form>
+                <label>Name:
+                <input name="submitted-name" autocomplete="name">
+                </label>
+                <button>Save</button>
+            </form>
+
+            <!-- Form which will send a POST request to the current URL -->
+            <form method="post">
+                <label>Name:
+                <input name="submitted-name" autocomplete="name">
+                </label>
+                <button>Save</button>
+            </form>
+            
+            <!-- Form with fieldset, legend, and label -->
+            <form method="post">
+                <fieldset>
+                <legend>Title</legend>
+                <label><input type="radio" name="radio"> Select me</label>
+                </fieldset>
+            </form>
+            
+        </div>
+    </div>
+
+    <script>
+        Vue.createApp({
+            data(){
+                return {
+                    message: 'this is a message',
+                    mess_list: [],
+                    title_data: '标题',
+                    dynamic: 'also a title',
+                    event: 'click',
+
+                }
+            },
+            methods: {
+                add(){
+                    this.mess_list.push(this.message)
+                    this.message = ''
+                },
+                handlersome(){
+                    alert('you do it')
+                },
+                handlerbutton(){
+                    alert('阻止事件')
+                }
+            }
+
+
+
+        }).mount('#app')
+        
+
+    </script>
+
+</body>
+</html>
+
